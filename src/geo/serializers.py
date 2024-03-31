@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from geo.models import Country, City
+from geo.models import Country, City, Weather, Currency, CurrencyRates
 
 
 class CountrySerializer(serializers.ModelSerializer):
@@ -47,3 +47,20 @@ class CitySerializer(serializers.ModelSerializer):
             "longitude",
             "country",
         ]
+
+
+class WeatherSerializer(serializers.Serializer):
+
+    temp = serializers.FloatField()
+    pressure = serializers.IntegerField()
+    humidity = serializers.IntegerField()
+    wind_speed = serializers.FloatField()
+    description = serializers.CharField()
+    visibility = serializers.IntegerField()
+
+
+class CurrencySerializer(serializers.Serializer):
+
+    base = serializers.CharField()
+    date = serializers.DateField()
+    rates = serializers.DictField()
